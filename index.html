@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="styles/style.css"/>
+  <title>Dalse Tik tak toe</title>
+</head>
+<body>
+  <h1>
+    DALSE <br>TIK TAK TOE 
+  </h1>
+  <div id="cont">
+    <div id="players">
+      <span id="play1" class="play">Player 1 <span class="ident">X</span></span>
+      <span id="play2">Player 2 <span class="ident">O</span></span>
+    </div>
+    <div id="game">
+      <div id="holder">
+        <div class="hold">
+      <div class="spot"></div>
+      <div class="spot"></div>
+      <div class="spot"></div>
+        </div>
+        <div class="hold">
+      <div class="spot"></div>
+      <div class="spot"></div>
+      <div class="spot"></div>
+        </div>
+        <div class="hold">
+      <div class="spot"></div>
+      <div class="spot"></div>
+      <div class="spot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+  var player1 = document.getElementById('play1');
+    var player2 = document.getElementById('play2');
+  var playSpots = document.querySelectorAll('.spot');
+  var play = 'cross';
+  playSpots.forEach((element) => {
+    element.addEventListener('click', function(){
+      if(element.textContent == ''){
+      if(play === 'cross'){
+      element.textContent = 'X';
+        confirm();
+        player2.classList.add('play');
+        player1.classList.remove('play');
+        play = 'circle';
+      }else{
+        element.textContent = 'O';
+        confirm();
+        player1.classList.add('play');
+        player2.classList.remove('play')
+        play = 'cross'
+      }
+      }else{
+        showAlert("Please play elsewhere");
+      }
+    });
+  });
+  
+function confirm() {
+  // Update the values of each spot in the confirm function to check the current state
+  var sp1 = playSpots[0].textContent;
+  var sp2 = playSpots[1].textContent;
+  var sp3 = playSpots[2].textContent;
+  var sp4 = playSpots[3].textContent;
+  var sp5 = playSpots[4].textContent;
+  var sp6 = playSpots[5].textContent;
+  var sp7 = playSpots[6].textContent;
+  var sp8 = playSpots[7].textContent;
+  var sp9 = playSpots[8].textContent;
+
+  // Check rows, columns, and diagonals for a win condition for 'X'
+  if ((sp1 === 'X' && sp2 === 'X' && sp3 === 'X') ||
+      (sp4 === 'X' && sp5 === 'X' && sp6 === 'X') ||
+      (sp7 === 'X' && sp8 === 'X' && sp9 === 'X') ||
+      (sp1 === 'X' && sp4 === 'X' && sp7 === 'X') ||
+      (sp2 === 'X' && sp5 === 'X' && sp8 === 'X') ||
+      (sp3 === 'X' && sp6 === 'X' && sp9 === 'X') ||
+      (sp1 === 'X' && sp5 === 'X' && sp9 === 'X') ||
+      (sp3 === 'X' && sp5 === 'X' && sp7 === 'X')) {
+    showAlert("Player One wins");
+    return;
+  }
+
+  // Check rows, columns, and diagonals for a win condition for 'O'
+  if ((sp1 === 'O' && sp2 === 'O' && sp3 === 'O') ||
+      (sp4 === 'O' && sp5 === 'O' && sp6 === 'O') ||
+      (sp7 === 'O' && sp8 === 'O' && sp9 === 'O') ||
+      (sp1 === 'O' && sp4 === 'O' && sp7 === 'O') ||
+      (sp2 === 'O' && sp5 === 'O' && sp8 === 'O') ||
+      (sp3 === 'O' && sp6 === 'O' && sp9 === 'O') ||
+      (sp1 === 'O' && sp5 === 'O' && sp9 === 'O') ||
+      (sp3 === 'O' && sp5 === 'O' && sp7 === 'O')) {
+    showAlert("Player Two wins");
+  }
+}
+
+  
+  function showAlert(message){
+    var alertBox = document.createElement('div');
+    alertBox.className = 'alert';
+    alertBox.textContent = message;
+    document.body.appendChild(alertBox);
+    setTimeout(() => {
+      document.body.removeChild(alertBox);
+    },3000);
+  }
+  </script>
+</body>
+</html>

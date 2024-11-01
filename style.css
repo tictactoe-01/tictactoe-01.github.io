@@ -1,0 +1,121 @@
+*{
+  margin: 0;
+  box-sizing: border-box;
+}
+body{
+  background: whitesmoke;
+}
+h1{
+  background: rgb(0,0,0);
+  text-align: center;
+  width: 100%;
+  height: 20vh;
+  font-size: 7rem;
+  color: white;
+  padding: 30px;
+  text-shadow: 1px 1px 1px gray,
+  2px 2px 1px gray,
+  3px 3px 1px gray,
+  4px 4px 1px gray,
+  5px 5px 1px gray,
+  6px 6px 1px gray,
+  7px 7px 1px gray,
+  8px 8px 1px gray,
+  9px 9px 1px gray,
+  10px 10px 1px gray;
+}
+/*#cont{
+  max-width: 800px;
+  max-height: 100vh;
+}*/
+#players{
+  width: 100%;
+  height: 5vh;
+  display: flex;
+  font-size: 1.5rem;
+  column-gap: 5px;
+}
+#players span{
+  width: 50%;
+  text-align: center;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid yellowgreen;
+  margin: 10px;
+  border-radius: 100px;
+}
+#players span .ident{
+  width: 45px;
+  height: 45px;
+  background: azure;
+  text-decoration: bold;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+}
+#game{
+  width: 100%;
+  height: 75vh;
+  display: grid;
+  place-content: center;
+}
+.spot{
+  border: 1px solid black;
+  width: 33.33%;
+  height: 100%;
+  display: grid;
+  place-content: center;
+  font-size: 2.5rem;
+}
+#holder{
+  width: 300px;
+  height: 300px;
+}
+.hold{
+  width: 100%;
+  height: 33.33%;
+  display: flex;
+}
+.spot:nth-child(1){
+  border-top: none;
+  border-left: none;
+}
+.spot:nth-child(2){
+  border-top: none;
+}
+.spot:nth-child(3){
+  border-top: none;
+  border-right: none;
+}
+.hold:nth-child(3) .spot:nth-child(1){
+  border-bottom: none;
+  
+}
+.hold:nth-child(3) .spot:nth-child(2){
+  border-bottom: none;
+  
+}
+.hold:nth-child(3) .spot:nth-child(3){
+  border-bottom: none;
+  
+}
+.play{
+  background: yellowgreen;
+  box-shadow: 0 0 20px red;
+}
+.alert{
+  position: fixed;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  z-index: 1000;
+  width: 100%;
+  font-size: 5rem;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  display: grid;
+  place-content: center;
+  color: white;
+}
+
