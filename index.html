@@ -3,20 +3,22 @@
 <html>
 <head>
   <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="styles/style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&family=Itim&family=Permanent+Marker&family=Rubik+Wet+Paint&display=swap" rel="stylesheet">
+  
   <title>Dalse Tik tak toe</title>
-<meta name="google-adsense-account" content="ca-pub-9603662891537787">
+  
+  <meta name="google-adsense-account" content="ca-pub-9603662891537787">
+
 </head>
 <body>
-  <h1>
+  <section class="sect">
+  <h1 class="rubik-wet-paint-regular">
     DALSE <br>TIK TAK TOE 
   </h1>
-  <div id="cont">
-    <div id="players">
-      <span id="play1" class="play">Player 1 <span class="ident">X</span></span>
-      <span id="play2">Player 2 <span class="ident">O</span></span>
-    </div>
-    <div id="game">
+    <div id="game" class="permanent-marker-regular">
       <div id="holder">
         <div class="hold">
       <div class="spot"></div>
@@ -36,6 +38,12 @@
       </div>
     </div>
   </div>
+  <div id="cont">
+    <div id="players" class="itim-regular">
+      <span id="play1" class="play">Player 1 <span class="ident">X</span></span>
+      <span id="play2">Player 2 <span class="ident">O</span></span>
+    </div>
+  </section>
   <script>
   var player1 = document.getElementById('play1');
     var player2 = document.getElementById('play2');
@@ -84,7 +92,11 @@ function confirm() {
       (sp3 === 'X' && sp6 === 'X' && sp9 === 'X') ||
       (sp1 === 'X' && sp5 === 'X' && sp9 === 'X') ||
       (sp3 === 'X' && sp5 === 'X' && sp7 === 'X')) {
-    showAlert("Player One wins");
+    showAlert("Player One wins").then(() =>{
+      playSpots.forEach((element) => {
+          element.textContent = '';
+        });
+    });
     return;
   }
 
@@ -97,20 +109,48 @@ function confirm() {
       (sp3 === 'O' && sp6 === 'O' && sp9 === 'O') ||
       (sp1 === 'O' && sp5 === 'O' && sp9 === 'O') ||
       (sp3 === 'O' && sp5 === 'O' && sp7 === 'O')) {
-    showAlert("Player Two wins");
+    showAlert("Player Two wins").then(() =>{
+      playSpots.forEach((element) => {
+          element.textContent = '';
+        });
+    });
+  }
+  if(sp1 != '' && sp2 != '' && sp3 != '' 
+     && sp4 != '' && sp5 != '' && sp6 != ''
+     && sp7 != '' && sp8 != '' && sp9 != ''
+  ){
+    showAlert('GAME OVER...').then(() =>{
+      playSpots.forEach((element) => {
+          element.textContent = '';
+        });
+    });
   }
 }
 
   
-  function showAlert(message){
+  function showAlert(message) {
+  return new Promise((resolve) => {
     var alertBox = document.createElement('div');
-    alertBox.className = 'alert';
-    alertBox.textContent = message;
-    document.body.appendChild(alertBox);
+    alertBox.classList.add('alert');
+    alertBox.classList.add('permanent-marker-regular');
     setTimeout(() => {
-      document.body.removeChild(alertBox);
-    },3000);
-  }
+       var i = 0;
+    var interval = setInterval(function() {
+      alertBox.textContent += message.charAt(i);
+      i++;
+      if (i >= message.length) {
+        clearInterval(interval);
+        setTimeout(() => {
+          document.body.removeChild(alertBox);
+          resolve(); 
+        }, 1500);
+      }
+    }, 50);
+    document.body.appendChild(alertBox);
+  
+    },600);
+   });
+}
   </script>
 </body>
 </html>
